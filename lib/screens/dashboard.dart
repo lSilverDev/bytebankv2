@@ -19,30 +19,32 @@ class Dashboard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => contactList())),
-                child: Container( 
-                  padding: EdgeInsets.all(8.0),
-                  height: 100,
-                  width: 150,
-                  color: Theme.of(context).primaryColor,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(
-                        Icons.people,
-                        color: Colors.white,
-                        size: 26,
-                      ),
-                      Text(
-                        'Contacts',
-                        style: TextStyle(
+              child: Material(
+                color: Theme.of(context).primaryColor,
+                child: InkWell(  
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => contactList())),
+                  child: Container( 
+                    padding: EdgeInsets.all(8.0),
+                    height: 100,
+                    width: 150,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Icon(
+                          Icons.people,
                           color: Colors.white,
-                          fontSize: 16.0,
-                        )
-                      ),
-                    ],
+                          size: 26,
+                        ),
+                        Text(
+                          'Contacts',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                          )
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
