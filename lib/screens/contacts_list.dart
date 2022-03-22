@@ -2,24 +2,42 @@ import 'package:bytebankv2/screens/contact_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../database/app_database.dart';
 import '../models/contact.dart';
 
 class contactList extends StatelessWidget{
-
-  final List<Contact> contacts = [];
-
+  
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         title: Text('Contracts'), 
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          final Contact contact = contacts[index];
-          return _ContactItem(contact);
-        },
-        itemCount: contacts.length,
+      body: FutureBuilder<List<Contact>>(
+        initialData: [],
+        future: Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
+          builder: (context, snapshot) {
+            final List<Contact>? contacts = snapshot.data;
+            if(contacts != null){
+                return  ListView.builder(
+                  itemBuilder: (context, index) {
+                    final Contact contact = contacts[index];
+                    return _ContactItem(contact);
+                  },
+                  itemCount: contacts.length,
+                );
+            }
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  CircularProgressIndicator(),
+                  Text('Loading...'),
+                ],
+              ),
+            );
+          },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(
