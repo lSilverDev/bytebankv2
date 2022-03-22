@@ -11,7 +11,7 @@ Future<Database> createDatabase(){
         'CREATE TABLE contacts('
         'id INTEGER PRIMARY KEY, '
         'name text, '
-        'account_number INTEGER)'
+        'number INTEGER)'
       );
     }, version: 1);
   });
