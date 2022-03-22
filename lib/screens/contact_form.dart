@@ -57,7 +57,7 @@ class _ContactFormState extends State<ContactForm>{
 
                     if(number != null)
                     {
-                      final Contact newContact = Contact(name, number);
+                      final Contact newContact = Contact(0, name, number);
                       Navigator.pop(context, newContact);
                     }
                   },
