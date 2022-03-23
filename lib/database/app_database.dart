@@ -3,10 +3,9 @@ import 'package:sqflite/sqflite.dart';
 
 import '../models/contact.dart';
 
-Future<Database> createDatabase(){
-  return getDatabasesPath().then((dbPath){
-    final String path = join(dbPath, 'bytebank.db');
-    return openDatabase(path, onCreate: (db, version){
+Future<Database> createDatabase() async{
+  final String path = join(await getDatabasesPath(), 'bytebank.db');
+  return openDatabase(path, onCreate: (db, version){
       db.execute(
         'CREATE TABLE contacts('
         'id INTEGER PRIMARY KEY, '
@@ -14,7 +13,20 @@ Future<Database> createDatabase(){
         'number INTEGER)'
       );
     }, version: 1);
-  });
+  // return getDatabasesPath().then((dbPath){
+  //   final String path = join(dbPath, 'bytebank.db');
+  //   return openDatabase(path, onCreate: (db, version){
+  //     db.execute(
+  //       'CREATE TABLE contacts('
+  //       'id INTEGER PRIMARY KEY, '
+  //       'name text, '
+  //       'number INTEGER)'
+  //     );
+  //   }, 
+  //     version: 2,
+  //     onDowngrade: onDatabaseDowngradeDelete,
+  //   );
+  // },);
 }
 
 Future<int> save(Contact contact){

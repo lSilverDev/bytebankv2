@@ -59,9 +59,7 @@ class contactList extends StatelessWidget{
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => ContactForm()
-          )
-        ).then(
-          (newContact) => debugPrint(newContact.toString())
+          ),
         ),
         child: Icon(
           Icons.add,

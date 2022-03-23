@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../database/app_database.dart';
 import '../models/contact.dart';
 
 class ContactForm extends StatefulWidget{
@@ -58,7 +59,7 @@ class _ContactFormState extends State<ContactForm>{
                     if(number != null)
                     {
                       final Contact newContact = Contact(0, name, number);
-                      Navigator.pop(context, newContact);
+                      save(newContact).then((id) => Navigator.pop(context));
                     }
                   },
                   child: Text('Create'),
